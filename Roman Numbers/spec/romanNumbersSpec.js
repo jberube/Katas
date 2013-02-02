@@ -22,4 +22,20 @@ describe('Roman Numbers', function () {
 	it('when given 9 returns IX', function () {
 		expect(toRoman(9)).toEqual('IX');		
 	});
+
+	it('when given 50 returns L', function () {
+		expect(toRoman(50)).toEqual('L');		
+	});
+	
+	it('when given 100 returns L', function () {
+		expect(toRoman(100)).toEqual('C');		
+	});
+	
+	it('when given 500 returns D', function () {
+		expect(toRoman(500)).toEqual('D');		
+	});
+	
+	it('when given 1000 returns M', function () {
+		expect(toRoman(1000)).toEqual('M');		
+	});
 });
