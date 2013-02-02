@@ -1,16 +1,11 @@
-describe("Roman Numbers", function() {
-
-	beforeEach(function() {
+describe('Roman Numbers', function() {
+	it('when given 1 returns I', function() {
+		var roman = toRoman(1);
+		expect(roman).toEqual('I');	
 	});
 
-	describe("given 1", function() {
-
-		it("returns I", function() {
-			/*
-			var 
-			
-			expect().toEqual('1');
-			*/
-		});
+	it('when given 2 returns II', function() {
+		expect(toRoman(2)).toEqual('II');
 	});
 });
+
