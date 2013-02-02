@@ -1,7 +1,12 @@
 function toRoman (latin){
 	var roman = '';	
-	for (var i = 1; i <= latin; i++) {
+	while (latin >= 5) {
+		roman += 'V';
+		latin -= 5;
+	}
+	while (latin >= 1) {
 		roman += 'I';
+		latin--;
 	}
 	return roman;
 }
