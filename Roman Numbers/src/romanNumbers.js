@@ -1,24 +1,21 @@
-function toRoman (latin) {
+var romanNumberSymbols = [
+	{ latin : 1, roman : 'I'},
+	{ latin : 5, roman : 'V'},
+	{ latin : 10, roman : 'X'}	
+];
+
+function toRoman (number) {
 	var roman = '';
-	while (latin >= 10) {
-		roman += 'X';
-		latin -= 10;
-	}
-	if (latin == 9) {
-		roman += 'IX';
-		latin -= 9;
-	}
-	while (latin >= 5) {
-		roman += 'V';
-		latin -= 5;
-	}
-	if (latin == 4) {
-		roman += 'IV';
-		latin -= 4;
-	}
-	while (latin >= 1) {
-		roman += 'I';
-		latin--;
+	for (var i = romanNumberSymbols.length - 1; i >= 0; i--) {
+		var symbol = romanNumberSymbols[i];
+		while (number >= symbol.latin) {
+			roman += symbol.roman;
+			number -= symbol.latin;
+		}
+		if (number > 0 && number == symbol.latin - 1) {
+			roman += 'I' + symbol.roman;
+			number -= symbol.latin - 1;
+		}
 	}
 	return roman;
 }
