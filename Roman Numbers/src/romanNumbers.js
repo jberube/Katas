@@ -10,15 +10,22 @@ var romanNumberSymbols = [
 
 function toRoman (number) {
 	var roman = '';
-	for (var i = romanNumberSymbols.length - 1; i >= 0; i--) {
-		var symbol = romanNumberSymbols[i];
+	var smaller, symbol;
+	main : for (var i = romanNumberSymbols.length - 1; i >= 0; i--) {
+		symbol = romanNumberSymbols[i];
 		while (number >= symbol.latin) {
 			roman += symbol.roman;
 			number -= symbol.latin;
+			if (number == 0) break main;
 		}
-		if (number > 0 && number == symbol.latin - 1) {
-			roman += 'I' + symbol.roman;
-			number -= symbol.latin - 1;
+		for (var j = i - 1; j >= 0; j--) {
+			smaller = romanNumberSymbols[j];
+			if (symbol.latin == smaller.latin * 2) continue;
+			if (number >= symbol.latin - smaller.latin) {
+				roman += smaller.roman + symbol.roman;
+				number -= symbol.latin - smaller.latin;
+				if (number == 0) break main;
+			}
 		}
 	}
 	return roman;

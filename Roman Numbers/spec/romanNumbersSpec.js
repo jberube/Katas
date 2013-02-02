@@ -38,4 +38,8 @@ describe('Roman Numbers', function () {
 	it('when given 1000 returns M', function () {
 		expect(toRoman(1000)).toEqual('M');		
 	});
+	
+	it('when given 4949 returns MMMMCMXLIX', function () {
+		expect(toRoman(4949)).toEqual('MMMMCMXLIX');		
+	});
 });
