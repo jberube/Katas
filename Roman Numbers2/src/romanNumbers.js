@@ -52,8 +52,14 @@ function number(num) {
 		fromRoman : function (roman) {
 			var latin = 0;
 			while (roman != '') {
-				latin += romanGlyphs[roman[0]];
-				roman = roman.slice(1);
+				var current = roman[0], next = roman[1];
+				if (next && romanGlyphs[current] < romanGlyphs[next]) {
+					latin += romanGlyphs[next] - romanGlyphs[current];
+					roman = roman.slice(2);
+				} else {
+					latin += romanGlyphs[current];
+					roman = roman.slice(1);
+				}
 			}
 			return latin;
 		}

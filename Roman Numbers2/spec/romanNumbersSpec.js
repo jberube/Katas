@@ -26,4 +26,8 @@ describe('Reverse Roman Numbers', function () {
 	it('returns 12 when given XII', function () {
 		expect(number().fromRoman('XII')).toEqual(12);
 	});
+
+	it('returns 1999 when given MIM', function () {
+		expect(number().fromRoman('MIM')).toEqual(1999);
+	});
 });
