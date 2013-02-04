@@ -16,4 +16,8 @@ describe('Reverse Roman Numbers', function () {
 	it('returns 1 when given I', function () {
 		expect(number().fromRoman('I')).toEqual(1);
 	});
+
+	it('returns 5 when given V', function () {
+		expect(number().fromRoman('V')).toEqual(5);
+	});
 });

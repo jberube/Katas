@@ -8,6 +8,16 @@ function number(num) {
 		{ roman : 'V', latin : 5},
 		{ roman : 'I', latin : 1}
 	];
+
+	var romanGlyphs = {
+		M : 1000,
+		D : 500,
+		C : 100,
+		L : 50,
+		X : 10,
+		V : 5,
+		I : 1
+	};
 	
 	return {
 		toRoman : function () {
@@ -40,7 +50,7 @@ function number(num) {
 		},
 		
 		fromRoman : function (roman) {
-			return 1;
+			return romanGlyphs[roman];
 		}
 	};
 }
