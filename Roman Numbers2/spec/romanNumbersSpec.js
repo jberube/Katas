@@ -11,3 +11,9 @@ describe('Roman Numbers2', function () {
 		expect(number(2669).toRoman()).toEqual('MMDCLXIX');
 	});
 });
+
+describe('Reverse Roman Numbers', function () {
+	it('returns 1 when given I', function () {
+		expect(number().fromRoman('I')).toEqual(1);
+	});
+});

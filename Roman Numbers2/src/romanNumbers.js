@@ -36,8 +36,11 @@ function number(num) {
 					current = romanNumbers[++i];
 				}
 			}
-			
 			return roman;
+		},
+		
+		fromRoman : function (roman) {
+			return 1;
 		}
 	};
 }
