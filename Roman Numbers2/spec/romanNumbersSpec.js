@@ -13,11 +13,13 @@ describe('Roman Numbers2', function () {
 });
 
 describe('Reverse Roman Numbers', function () {
-	it('returns 1 when given I', function () {
+	it('returns proper value when given a single glyph', function () {
 		expect(number().fromRoman('I')).toEqual(1);
-	});
-
-	it('returns 5 when given V', function () {
 		expect(number().fromRoman('V')).toEqual(5);
+		expect(number().fromRoman('X')).toEqual(10);
+		expect(number().fromRoman('L')).toEqual(50);
+		expect(number().fromRoman('C')).toEqual(100);
+		expect(number().fromRoman('D')).toEqual(500);
+		expect(number().fromRoman('M')).toEqual(1000);
 	});
 });
