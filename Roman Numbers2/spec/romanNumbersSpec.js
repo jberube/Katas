@@ -22,4 +22,8 @@ describe('Reverse Roman Numbers', function () {
 		expect(number().fromRoman('D')).toEqual(500);
 		expect(number().fromRoman('M')).toEqual(1000);
 	});
+	
+	it('returns 12 when given XII', function () {
+		expect(number().fromRoman('XII')).toEqual(12);
+	});
 });

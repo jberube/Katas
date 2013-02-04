@@ -50,7 +50,12 @@ function number(num) {
 		},
 		
 		fromRoman : function (roman) {
-			return romanGlyphs[roman];
+			var latin = 0;
+			while (roman != '') {
+				latin += romanGlyphs[roman[0]];
+				roman = roman.slice(1);
+			}
+			return latin;
 		}
 	};
 }
