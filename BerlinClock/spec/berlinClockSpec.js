@@ -7,16 +7,12 @@ describe("The Berlin Clock", function () {
         
         // On the top of the clock there is a yellow lamp that blinks on/off every two seconds.
 		it("is yellow on even seconds", function () {
-            var time = new Date(2000, 1, 1, 0, 0, 0);
-            
-            expect(berlinClock(time)).toMatch(/^Y/);
+            expect(berlinClock(new Date(2000, 1, 1, 0, 0, 0))).toMatch(/^Y/);
 		});
 
         // On the top of the clock there is a yellow lamp that blinks on/off every two seconds.
     	it("is off on odd seconds", function () {
-            var time = new Date(2000, 1, 1, 0, 0, 1);
-            
-            expect(berlinClock(time)).toMatch(/^O/);
+            expect(berlinClock(new Date(2000, 1, 1, 0, 0, 1))).toMatch(/^O/);
 		});
     });
 });
