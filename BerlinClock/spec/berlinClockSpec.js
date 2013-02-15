@@ -21,7 +21,7 @@ describe("The Berlin Clock", function () {
        //The top two rows of lamps are red. These indicate the hours of a day.
        //In the top row there are 4 red lamps. Every lamp represents 5 hours.
        //In the lower row of red lamps every lamp represents 1 hour. 
-       it("has 4 lamps either red (R) or off (O)", function () {
+       it("each has 4 lamps that can be either red (R) or off (O)", function () {
            expect(berlinClock(new Date(0))).toMatch(/^.*\n(R|O){4}\n(R|O){4}\n/);
        });
     });
