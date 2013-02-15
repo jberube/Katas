@@ -22,21 +22,27 @@ describe("The Berlin Clock", function () {
        //In the top row there are 4 red lamps. Every lamp represents 5 hours.
        //In the lower row of red lamps every lamp represents 1 hour. 
        it("has 4 lamps either red (R) or off (O)", function () {
-           expect(berlinClock(new Date(0))).toMatch(/^(Y|O)\n(R|O){4}\n(R|O){4}\n/);
+           expect(berlinClock(new Date(0))).toMatch(/^.*\n(R|O){4}\n(R|O){4}\n/);
        });
     });
 });
 
 function berlinClock ( time ) {
+    function row ( row ) {
+        return row + '\n';
+    }
+
     var berlin = '';
     
     if (time.getSeconds() % 2 == 1) {
-        berlin += 'O\n';
+        berlin += row('O');
     } else {
-        berlin += 'Y\n';
+        berlin += row('Y');
     }
 
-    berlin += 'OOOO\nOOOO\n';
+    berlin += row('OOOO');
+    berlin += row('OOOO');
     
     return berlin;
 }
+
