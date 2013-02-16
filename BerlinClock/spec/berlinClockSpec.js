@@ -59,7 +59,10 @@ describe("The Berlin Clock", function () {
         });
         
         it("a lamp is yellow (Y) for every 5 minutes of the current time", function () {
-           expect(berlinClock(new Date(2004, 05, 26, 0, 45, 0))).toMatch(/^(.*\n){3}YYYYYYYYYOO\n/);
+           expect(berlinClock(new Date(2004, 05, 26, 00, 45, 00))).toMatch(/^(.*\n){3}YYYYYYYYYOO\n/);
+           expect(berlinClock(new Date(2004, 05, 26, 07, 45, 35))).toMatch(/^(.*\n){3}YYYYYYYYYOO\n/);
+           expect(berlinClock(new Date(2004, 05, 26, 00, 00, 00))).toMatch(/^(.*\n){3}OOOOOOOOOOO\n/);
+           expect(berlinClock(new Date(2004, 05, 26, 00, 17, 00))).toMatch(/^(.*\n){3}YYYOOOOOOOO\n/);
         });
     });
 
