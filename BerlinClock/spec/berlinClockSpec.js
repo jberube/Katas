@@ -41,6 +41,13 @@ describe("The Berlin Clock", function () {
             }
         });
     });
+    
+    describe("second row", function () {
+       
+       it("a lamp is red for every hours of the current time not represented by the first row", function () {
+           expect(berlinClock(new Date(2000, 1, 1, 1, 0, 0))).toMatch(/^(.*\n){2}ROOO\n/);
+       });
+    });
 });
 
 function berlinClock ( time ) {
@@ -65,7 +72,14 @@ function berlinClock ( time ) {
     }
     berlin += row('');
 
-    berlin += row('OOOO');
+    for (var i = 1; i <= 4; i++) {
+        if (time.getHours() % 5 >= i) {
+            berlin += 'R';
+        } else {
+            berlin += 'O';
+        }
+    }
+    berlin += row('');
     
     return berlin;
 }
