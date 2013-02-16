@@ -69,11 +69,7 @@ function berlinClock ( time ) {
     }
 
     function addLamp (color, condition) {
-        if (condition) {
-            berlin += color;
-        } else {
-            berlin += 'O';
-        }
+        berlin += (condition ? color : 'O');
     }
     
     addLamp('Y', time.getSeconds() % 2 == 0);
