@@ -66,7 +66,7 @@ describe("The Berlin Clock", function () {
 });
 
 function berlinClock ( time ) {
-    var berlin = '';
+    var berlin = '', i;
 
     function endRow ( row ) {
         berlin += '\n';
@@ -79,17 +79,17 @@ function berlinClock ( time ) {
     addLamp('Y', time.getSeconds() % 2 == 0);
     endRow();
     
-    for (var i = 5; i <= 20; i+=5) {
+    for (i = 5; i <= 20; i+=5) {
         addLamp('R', time.getHours() >= i);
     }
     endRow();
 
-    for (var i = 1; i <= 4; i++) {
+    for (i = 1; i <= 4; i++) {
         addLamp('R', time.getHours() % 5 >= i);
     }
     endRow();
     
-    for (var i = 5; i <= 55; i+=5) {
+    for (i = 5; i <= 55; i+=5) {
         addLamp('Y', time.getMinutes() >= i);
     }
     endRow();
