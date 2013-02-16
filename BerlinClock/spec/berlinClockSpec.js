@@ -65,6 +65,13 @@ describe("The Berlin Clock", function () {
            expect(berlinClock(new Date(2004, 05, 26, 00, 17, 00))).toMatch(/^(.*\n){3}YYYOOOOOOOO\n/);
         });
     });
+    
+    describe("fourth row", function () {
+        
+        it("has four lamps that can be either yellow (Y) or off(O)", function () {
+            expect(berlinClock(new Date(1999, 12, 05, 13, 58, 45))).toMatch(/^(.*\n){4}(Y|O){4}\n/);
+        });
+    });
 
 });
 
@@ -94,6 +101,11 @@ function berlinClock ( time ) {
     
     for (i = 5; i <= 55; i+=5) {
         addLamp('Y', time.getMinutes() >= i);
+    }
+    endRow();
+
+    for (i = 1; i <= 4; i++) {
+        addLamp('Y', true);
     }
     endRow();
     
