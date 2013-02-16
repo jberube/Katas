@@ -55,35 +55,32 @@ describe("The Berlin Clock", function () {
 });
 
 function berlinClock ( time ) {
-    function row ( row ) {
-        return row + '\n';
+    var berlin = '';
+
+    function endRow ( row ) {
+        berlin += '\n';
     }
 
-    var berlin = '';
-    
-    if (time.getSeconds() % 2 == 1) {
-        berlin += row('O');
-    } else {
-        berlin += row('Y');
+    function addLamp (color, condition) {
+        if (condition) {
+            berlin += color;
+        } else {
+            berlin += 'O';
+        }
     }
+    
+    addLamp('Y', time.getSeconds() % 2 == 0);
+    endRow();
     
     for (var i = 5; i <= 20; i+=5) {
-        if (time.getHours() >= i) {
-            berlin += 'R';
-        } else {
-            berlin += 'O';
-        }
+        addLamp('R', time.getHours() >= i);
     }
-    berlin += row('');
+    endRow();
 
     for (var i = 1; i <= 4; i++) {
-        if (time.getHours() % 5 >= i) {
-            berlin += 'R';
-        } else {
-            berlin += 'O';
-        }
+        addLamp('R', time.getHours() % 5 >= i);
     }
-    berlin += row('');
+    endRow();
     
     return berlin;
 }
