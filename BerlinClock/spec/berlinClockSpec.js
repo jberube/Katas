@@ -55,7 +55,7 @@ describe("The Berlin Clock", function () {
 
     describe("third row", function () {
         it("has 11 lamps that can be either yellow (Y) or off (O)", function () {
-            expect(berlinClock(new Date(2008, 6, 14, 22, 15, 57))).toMatch(/^(.*\n){3}(Y|O){11}\n/);
+            expect(berlinClock(new Date(2008, 6, 14, 22, 15, 57))).toMatch(/^(.*\n){3}((Y|O){2}(R|O)){3}(Y|O){2}\n/);
         });
         
         it("a lamp is yellow (Y) for every 5 minutes of the current time", function () {
@@ -107,7 +107,7 @@ function berlinClock ( time ) {
     endRow();
     
     for (i = 5; i <= 55; i+=5) {
-        addLamp('Y', time.getMinutes() >= i);
+        addLamp(i % 15 === 0 ? 'R' : 'Y', time.getMinutes() >= i);
     }
     endRow();
 
