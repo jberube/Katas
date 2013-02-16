@@ -24,6 +24,11 @@ describe("The Berlin Clock", function () {
         it("each has 4 lamps that can be either red (R) or off (O)", function () {
             expect(berlinClock(new Date(0))).toMatch(/^.*\n(R|O){4}\n(R|O){4}\n/);
         });
+        
+        //In the top row there are 4 red lamps. Every lamp represents 5 hours.
+        it("first lamp of the first row is red (R) if hour is equal or greater than 5", function () {
+            expect(berlinClock(new Date(2000, 1, 1, 5, 0, 0))).toMatch(/^.*\nR/);
+        });
        
     });
 });
@@ -40,8 +45,14 @@ function berlinClock ( time ) {
     } else {
         berlin += row('Y');
     }
+    
+    if (time.getHours() >= 5) {
+        berlin += 'R';
+    } else {
+        berlin += 'O';
+    }
 
-    berlin += row('OOOO');
+    berlin += row('OOO');
     berlin += row('OOOO');
     
     return berlin;
