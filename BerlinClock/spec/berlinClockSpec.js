@@ -52,6 +52,13 @@ describe("The Berlin Clock", function () {
            expect(berlinClock(new Date(2000, 1, 1, 23, 59, 0))).toMatch(/^(.*\n){2}RRRO\n/);
        });
     });
+
+    describe("third row", function () {
+        it("has 11 lamps that can be either yellow (Y) or off (O)", function () {
+            expect(berlinClock(new Date(2008, 6, 14, 22, 15, 57))).toMatch(/^(.*\n){3}(Y|O){11}\n/);
+        });
+    });
+
 });
 
 function berlinClock ( time ) {
@@ -79,6 +86,11 @@ function berlinClock ( time ) {
 
     for (var i = 1; i <= 4; i++) {
         addLamp('R', time.getHours() % 5 >= i);
+    }
+    endRow();
+    
+    for (var i = 1; i <= 11; i++) {
+        addLamp('O', true);
     }
     endRow();
     
