@@ -46,6 +46,10 @@ describe("The Berlin Clock", function () {
        
        it("a lamp is red for every hours of the current time not represented by the first row", function () {
            expect(berlinClock(new Date(2000, 1, 1, 1, 0, 0))).toMatch(/^(.*\n){2}ROOO\n/);
+           expect(berlinClock(new Date(2000, 1, 1, 5, 0, 0))).toMatch(/^(.*\n){2}OOOO\n/);
+           expect(berlinClock(new Date(2000, 1, 1, 7, 0, 0))).toMatch(/^(.*\n){2}RROO\n/);
+           expect(berlinClock(new Date(2000, 1, 1, 14, 0, 0))).toMatch(/^(.*\n){2}RRRR\n/);
+           expect(berlinClock(new Date(2000, 1, 1, 23, 59, 0))).toMatch(/^(.*\n){2}RRRO\n/);
        });
     });
 });
