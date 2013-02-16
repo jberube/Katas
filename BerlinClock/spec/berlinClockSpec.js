@@ -15,22 +15,31 @@ describe("The Berlin Clock", function () {
     });
     
     describe("top two rows", function () {
-       
+        
         it("each has 4 lamps that can be either red (R) or off (O)", function () {
             expect(berlinClock(new Date(0))).toMatch(/^.*\n(R|O){4}\n(R|O){4}\n/);
         });
-        
-        it("first lamp of the first row is red (R) if hour is equal or greater than 5", function () {
-            expect(berlinClock(new Date(2000, 1, 1, 5, 0, 0))).toMatch(/^.*\nR/);
-            expect(berlinClock(new Date(2000, 1, 1, 12, 0, 0))).toMatch(/^.*\nR/);
-        });
+    });
+    
+    describe("top row", function () {
 
-        it("second lamp of the first row is red (R) if hour is equal or greater than 10", function () {
-            expect(berlinClock(new Date(2000, 1, 1, 10, 0, 0))).toMatch(/^.*\n(R|O)R/);
-            expect(berlinClock(new Date(2000, 1, 1, 12, 0, 0))).toMatch(/^.*\n(R|O)R/);
-            expect(berlinClock(new Date(2000, 1, 1, 20, 5, 14))).toMatch(/^.*\n(R|O)R/);
-        });
+        var lamps = [
+            {hours: 5, test: 'ROOO'},
+            {hours: 10, test: 'RROO'},
+            {hours: 15, test: 'RRRO'},
+            {hours: 20, test: 'RRRR'}
+        ];
 
+        it("a lamp is red (R) for every 5 hours of the current time", function () {
+            var berlin;
+            for (var lamp in lamps) {
+                berlin = berlinClock(new Date(2000, 1, 1, lamps[lamp].hours, 0, 0));
+                var testRegexp = /^.*\n((?:R|O){4})/;
+                var matches = testRegexp.exec(berlin);
+                expect(matches).not.toBeNull();
+                expect(matches[1]).toEqual(lamps[lamp].test);
+            }
+        });
     });
 });
 
