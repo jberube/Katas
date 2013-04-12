@@ -11,7 +11,7 @@ describe("Bowling Game", function () {
 		describe("first roll, 1 pin", function () {
 
 			it("score is 1", function () {
-				bowlingGame.roll(rolls[0]);
+				makeSomeRolls(1);
 				expect(bowlingGame.score()).toEqual(1);
 			});
 		});
@@ -19,9 +19,7 @@ describe("Bowling Game", function () {
 		describe("second roll, 4 pins", function () {
 
 			it("score is 5", function () {
-				for (var i = 0; i <= 1; i++) {
-					bowlingGame.roll(rolls[i]);
-				}
+				makeSomeRolls(2);
 				expect(bowlingGame.score()).toEqual(5);
 			});
 		});
@@ -30,10 +28,14 @@ describe("Bowling Game", function () {
 	describe("Second frame, knocked 4 and 5", function () {
 
 		it("score is 14", function () {
-			for (var i = 0; i <= 3; i++) {
-				bowlingGame.roll(rolls[i]);
-			}
+			makeSomeRolls(4);
 			expect(bowlingGame.score()).toEqual(14);
 		});	
 	});
+	
+	function makeSomeRolls(howMuch){
+			for (var i = 0; i < howMuch; i++) {
+				bowlingGame.roll(rolls[i]);
+			}
+	}
 });
