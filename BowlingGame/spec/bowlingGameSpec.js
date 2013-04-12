@@ -24,4 +24,18 @@ describe("Bowling Game", function () {
 			});
 		});
 	});
+	
+	describe("Second frame, knocked 4 and 5", function () {
+
+		it("score is 14", function () {
+			var bowlingGame = BowlingGame();
+			// frame 1
+			bowlingGame.roll(1);
+			bowlingGame.roll(4);
+			// frame 2
+			bowlingGame.roll(4);
+			bowlingGame.roll(5);
+			expect(bowlingGame.score()).toEqual(14);
+		});	
+	});
 });
