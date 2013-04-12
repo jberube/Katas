@@ -1,6 +1,8 @@
 describe("Bowling Game", function () {
-
+	var bowlingGame;
+	
 	beforeEach(function () {
+		bowlingGame = BowlingGame();
 	});
 
 	describe("First frame", function () {
@@ -8,7 +10,6 @@ describe("Bowling Game", function () {
 		describe("first roll, 1 pin", function () {
 
 			it("score is 1", function () {
-				var bowlingGame = BowlingGame();
 				bowlingGame.roll(1);
 				expect(bowlingGame.score()).toEqual(1);
 			});
@@ -17,7 +18,6 @@ describe("Bowling Game", function () {
 		describe("second roll, 4 pins", function () {
 
 			it("score is 5", function () {
-				var bowlingGame = BowlingGame();
 				bowlingGame.roll(1);
 				bowlingGame.roll(4);
 				expect(bowlingGame.score()).toEqual(5);
@@ -28,7 +28,6 @@ describe("Bowling Game", function () {
 	describe("Second frame, knocked 4 and 5", function () {
 
 		it("score is 14", function () {
-			var bowlingGame = BowlingGame();
 			// frame 1
 			bowlingGame.roll(1);
 			bowlingGame.roll(4);
