@@ -1,8 +1,11 @@
 var BowlingGame = function () {
+	var score = 0;
 	return {
-		roll : function () {},
+		roll : function (pins) {
+			score += pins;
+		},
 		score : function () {
-			return 1;
+			return score;
 		}
 	};
 };
