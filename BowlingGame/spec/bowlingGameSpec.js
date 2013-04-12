@@ -6,22 +6,11 @@ describe("Bowling Game", function () {
 		bowlingGame = BowlingGame();
 	});
 
-	describe("First frame", function () {
+	describe("First frame, knocked 1 and 4", function () {
 
-		describe("first roll, 1 pin", function () {
-
-			it("score is 1", function () {
-				makeSomeRolls(1);
-				expect(bowlingGame.score()).toEqual(1);
-			});
-		});
-		
-		describe("second roll, 4 pins", function () {
-
-			it("score is 5", function () {
-				makeSomeRolls(2);
-				expect(bowlingGame.score()).toEqual(5);
-			});
+		it("score is 5", function () {
+			makeSomeRolls(2);
+			expect(bowlingGame.score()).toEqual(5);
 		});
 	});
 	
