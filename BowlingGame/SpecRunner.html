@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Jasmine Spec Runner</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.3.1/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-1.3.1/jasmine.css">
+  <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine-html.js"></script>
+
+  <!-- include source files here... -->
+  <script type="text/javascript" src="src/bowlingGame.js"></script>
+
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="spec/SpecHelper.js"></script>
+  <script type="text/javascript" src="spec/bowlingGameSpec.js"></script>
+
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var htmlReporter = new jasmine.HtmlReporter();
+
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
+
+</head>
+
+<body>
+    <p>I've taken this Kata from <a href="http://content.codersdojo.org/code-kata-catalogue/berlin-clock/">Coders Dojo</a>. Kudos to the folks that made it.</p>
+    <h1>Bowling Game</h1>
+    <p>Count and sum the scores of a bowling game of one player.</p>
+	<p>A bowling game consists of 10 frames in which the player tries to knock down the 10 pins. In every frame the player can throw one or two times. The actual number depends on strikes and spares. The score of a frame is the number of knocked down pins plus bonuses for strikes and spares. After every frame the 10 pins are resettet.</p>
+	<h2>Strikes</h2>
+	<p>The player has a strike of he knocks down all 10 pins with the first roll in a frame. The frame ends immediately (since there are no pins left for a second roll). The bonus for that frame is the number of pins knocked down by the next two rolls. That is the next frame, except if the player rolls a strike again.</p>
+	<h2>Spares</h2>
+	<p>The player has a spare if the knocks down all 10 pins with the two roles of a frame. The bonus for that frame is the number of pins knocked down by the next roll (first role of next frame).</p>
+	<h2>10th frame</h2>
+	<p>If the player rolls a strike or spare in the 10th frame he can roll the additional balls for the bonus. But he can never roll more than 3 balls in the 10th frame. The additional rolls only count for the bonus not for the regular frame count.</p>
+	<ul>
+		<li>10, 10, 10 in the 10th frame gives 30 points (10 points for the regular first strike and 20 points for the bonus)</li>
+		<li>1, 9, 10 in the 10th frame gives 20 points (10 points for the regular spare and 10 points for the bonus)</li>
+	</ul>
+	<h2>Gutter Game</h2>
+	<p>A Gutter Game is when the player never hits a pin (20 zero scores).</p>
+	<h2>Perfect Game</h2>
+	<p>A Perfect Game is when the player rolls 12 strikes (10 regular strikes and 2 strikes for the bonus in the 10th frame). The Perfect Game scores to 300 points.</p>
+	<h2>Example score</h2>
+	<table>
+		<thead>
+			<th>Frame</th>
+			<th>Roll</th>
+			<th>Knocked down pins</th>
+			<th>Total score</th>	
+			<th>Notes</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>4</td>
+				<td>5</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>1</td>
+				<td>4</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>2</td>
+				<td>5</td>
+				<td>14</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>1</td>
+				<td>6</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>2</td>
+				<td>4</td>
+				<td>29</td>
+				<td>Spare: 10 pins plus bonus of 5 from next roll (roll 1 of frame 4)</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>1</td>
+				<td>5</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>2</td>
+				<td>5</td>
+				<td>49</td>
+				<td>Spare: 10 pins plus bonus of 10 from next roll (roll 1 frame 5)</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>1</td>
+				<td>10</td>
+				<td></td>
+				<td>Strike</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>2</td>
+				<td></td>
+				<td>60</td>
+				<td>Strike: 10 pins plus bonus of 1 from next frame (rolls 1 and 2 from frame 6)</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>1</td>
+				<td>0</td>
+				<td></td>
+				<td>Bad luck</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>2</td>
+				<td>1</td>
+				<td>61</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>1</td>
+				<td>7</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>2</td>
+				<td>3</td>
+				<td>77</td>
+				<td>Spare</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>1</td>
+				<td>6</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>2</td>
+				<td>4</td>
+				<td>97</td>
+				<td>Spare</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>1</td>
+				<td>10</td>
+				<td></td>
+				<td>Strike</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>1</td>
+				<td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>2</td>
+				<td>8</td>
+				<td></td>
+				<td>Spare</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>3</td>
+				<td>6</td>
+				<td>133</td>
+				<td>Extra roll due to spare in 10th frame</td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>Assignment</h2>
+	<p>Write a class BowlingGame with two methods</p>
+	<ul>
+		<li>+ roll(pins : int)</li>
+		<li>+ score() : int</li>
+	</ul>
+	<p>For every roll the roll method is called. The score method returns the total score.</p>
+	<h2>Test cases</h2>
+	<p>see table with example game</p>
+</body>
+</html>
