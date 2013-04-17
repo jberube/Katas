@@ -5,6 +5,10 @@ var BowlingGame = function () {
 		return (roll % 2 == 1 && rolls[roll] + rolls[roll- 1] == 10);
 	}
 
+	function isStrike (roll) {
+		return (roll % 2 == 0 && rolls[roll] == 10);
+	}
+	
 	return {
 		roll : function (pins) {
 			rolls.push(pins);
@@ -17,13 +21,13 @@ var BowlingGame = function () {
 		},
 		
 		scoreAtFrame : function(frame) {
-			return rolls.reduce(function(previous, current, index, array) {
+			return rolls.reduce(function (previous, current, index, array) {
 				if (index >= frame * 2) {
 					return previous;
 				}
 				
-				if (index % 2 == 0 && current == 10) {
-					return previous + current + array[index + 2] + array[index + 3]
+				if (isStrike(index, current)) {
+					return previous + current + array[index + 2] + array[index + 3];
 				}
 				
 				if (isSpare(index)) {
@@ -31,7 +35,7 @@ var BowlingGame = function () {
 				}
 				
 				return previous + current;
-			}, 0);		
+			}, 0);
 		}
 	};
 };
