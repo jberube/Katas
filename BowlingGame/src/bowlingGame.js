@@ -21,20 +21,20 @@ var BowlingGame = function () {
 		},
 		
 		scoreAtFrame : function(frame) {
-			return rolls.reduce(function (previous, current, index, array) {
-				if (index >= frame * 2) {
-					return previous;
+			return rolls.reduce(function (total, pins, roll, rolls) {
+				if (roll >= frame * 2) {
+					return total;
 				}
 				
-				if (isStrike(index, current)) {
-					return previous + current + array[index + 2] + array[index + 3];
+				if (isStrike(roll, pins)) {
+					return total + pins + rolls[roll + 2] + rolls[roll + 3];
 				}
 				
-				if (isSpare(index)) {
-					return previous + current + array[index + 1];
+				if (isSpare(roll)) {
+					return total + pins + rolls[roll + 1];
 				}
 				
-				return previous + current;
+				return total + pins;
 			}, 0);
 		}
 	};
