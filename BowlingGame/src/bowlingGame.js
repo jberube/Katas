@@ -1,23 +1,23 @@
 var BowlingGame = function () {
-	var score = [];
+	var rolls = [];
 
 	function isSpare (roll) {
-		return (roll % 2 == 1 && score[roll] + score[roll- 1] == 10);
+		return (roll % 2 == 1 && rolls[roll] + rolls[roll- 1] == 10);
 	}
 
 	return {
 		roll : function (pins) {
-			score.push(pins);
+			rolls.push(pins);
 		},
 		
-		score : function (rame) {
-			return score.reduce(function(previous, current, index, array) {
+		score : function () {
+			return rolls.reduce(function(previous, current, index, array) {
 				return previous + current;
 			}, 0);
 		},
 		
 		scoreAtFrame : function(frame) {
-			return score.reduce(function(previous, current, index, array) {
+			return rolls.reduce(function(previous, current, index, array) {
 				if (index >= frame * 2) {
 					return previous;
 				}
