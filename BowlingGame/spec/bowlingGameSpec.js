@@ -41,9 +41,17 @@ describe("Bowling Game", function () {
 
 	describe("Fifth frame, strike, then knocked 0 and 1", function () {
 
-		it("score is 49", function () {
+		it("score is 60", function () {
 			makeSomeRolls(12);
 			expect(bowlingGame.scoreAtFrame(5)).toEqual(60);
+		});	
+	});
+
+	describe("Sixth frame, gutter and 1", function () {
+
+		it("score is 61", function () {
+			makeSomeRolls(12);
+			expect(bowlingGame.scoreAtFrame(6)).toEqual(61);
 		});	
 	});
 
