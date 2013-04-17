@@ -22,7 +22,10 @@ var BowlingGame = function () {
 					return previous;
 				}
 				
-				// spare
+				if (index % 2 == 0 && current == 10) {
+					return previous + current + array[index + 2] + array[index + 3]
+				}
+				
 				if (isSpare(index)) {
 					return previous + current + array[index + 1];
 				}
