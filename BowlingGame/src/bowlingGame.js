@@ -2,11 +2,11 @@ var BowlingGame = function () {
 	var rolls = [];
 
 	function isSpare (roll) {
-		return (roll % 2 == 1 && rolls[roll] + rolls[roll- 1] == 10);
+		return (roll % 2 == 1 && rolls[roll] + rolls[roll- 1] === 10 && [roll] !== 10);
 	}
 
 	function isStrike (roll) {
-		return (roll % 2 == 0 && rolls[roll] == 10);
+		return (roll % 2 === 0 && rolls[roll] === 10);
 	}
 	
 	return {
@@ -32,6 +32,9 @@ var BowlingGame = function () {
 				
 				if (isSpare(roll)) {
 					return total + pins + rolls[roll + 1];
+				
+				if (roll >= 18) {
+					return total;
 				}
 				
 				return total + pins;
